@@ -1,38 +1,34 @@
 from binaryTree import *
 from stack import *
 
-def buildParseTree(fpexp):
-    fplist = fpexp.split()
-    pStack = Stack()
-    eTree = BinaryTree('')
-    pStack.push(eTree)
-    currentTree = eTree
+def buildParseTree(inputEquation):
+    equation = inputEquation.split()
+    p_stack = Stack()
+    bTree = BinaryTree('')
+    p_stack.push(bTree)
+    currentTree = bTree
 
-    for i in fplist:
+    for i in equation:
         if i == '(':
             currentTree.insertLeft('')
-            pStack.push(currentTree)
+            p_stack.push(currentTree)
             currentTree = currentTree.getLeftChild()
 
         elif i in ['+', '-', '*', '/']:
             currentTree.setRootVal(i)
             currentTree.insertRight('')
-            pStack.push(currentTree)
+            p_stack.push(currentTree)
             currentTree = currentTree.getRightChild()
 
         elif i == ')':
-            currentTree = pStack.pop()
+            currentTree = p_stack.pop()
 
         elif i not in ['+', '-', '*', '/', ')']:
-            try:
-                currentTree.setRootVal(i)
-                parent = pStack.pop()
-                currentTree = parent
+            currentTree.setRootVal(i)
+            parent = p_stack.pop()
+            currentTree = parent
 
-            except ValueError:
-                raise ValueError("token '{}' is not a valid integer".format(i))
-
-    return eTree
+    return bTree
 
 equation = input("Enter an equation with explicit parentheses:\n ex: ( ( ( 1 + 2 ) * 3 ) - 4 )\n")
 pt = buildParseTree(equation)
