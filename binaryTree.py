@@ -72,16 +72,3 @@ class BinaryTree:
         if self.rightChild:
             self.rightChild.printexp()
             print(')', end=' ')
-
-    # def postordereval(self):
-    #     opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
-    #     res1 = None
-    #     res2 = None
-    #     if self.leftChild:
-    #         res1 = self.leftChild.postordereval()  #// \label{peleft}
-    #     if self.rightChild:
-    #         res2 = self.rightChild.postordereval() #// \label{peright}
-    #     if res1 and res2:
-    #         return opers[self.key](res1,res2) #// \label{peeval}
-    #     else:
-    #         return self.key
